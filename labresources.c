@@ -141,10 +141,10 @@ void display_image(int x, const uint8_t *data) {
 	
 	for(i = 0; i < 4; i++) {
 		DISPLAY_COMMAND_DATA_PORT &= ~DISPLAY_COMMAND_DATA_MASK;
-		spi_send_recv(0x22);
-		spi_send_recv(i);
+		spi_send_recv(0x22);		// set page address to write to
+		spi_send_recv(i);			// page address to be written
 		
-		spi_send_recv(x & 0xF);
+		spi_send_recv(0x0);			// set lower nibble start address
 		spi_send_recv(0x10 | ((x >> 4) & 0xF));
 		
 		DISPLAY_COMMAND_DATA_PORT |= DISPLAY_COMMAND_DATA_MASK;

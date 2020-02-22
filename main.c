@@ -8,6 +8,7 @@ int main(void) {
 	setup_chipkit();
 
 	display_init();	
+	graphics_init();
 	
 	need2pee();
 
