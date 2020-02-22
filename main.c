@@ -1,0 +1,18 @@
+#include <pic32mx.h>
+#include <stdint.h>
+#include "labresources.h"
+#include "n2p.h"
+
+
+int main(void) {
+	setup_chipkit();
+
+	display_init();	
+	
+	need2pee();
+
+		
+	for(;;) ;
+	return 0;
+}
+
