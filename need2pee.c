@@ -12,6 +12,9 @@
 #define BUTTON_2 PORTD & (1 << 5)
 #define BUTTON_1 PORTF & 2
 
+int which_menu = 0;
+int menu_select = 0;
+
 
 
 
@@ -29,7 +32,7 @@ void main_menu ( int *select ){
 
 	buttons = getbtns;
 
-	if (buttons & 0x00000010) {	//button_1 enter
+	BUTTON_1 {	//button_1 enter
 		if (which_menu & menu_select) == 0; {
 		/* start_game(); */
 		if (menu_select);
