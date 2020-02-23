@@ -14,3 +14,6 @@ void need2pee ( void );
 void display_frame( void );
 void graphics_init ( void );
 void buffer2display ( void );
+
+/*	interrupts */
+void user_isr ( void );

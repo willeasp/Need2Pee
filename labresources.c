@@ -21,6 +21,11 @@
 #define DISPLAY_CHANGE_TO_DATA_MODE (PORTFSET = 0x10)
 
 
+void buttonsinit( void ){
+  TRISD = 0xE0;
+  return;
+}
+
 void timerinit (void){   
   TRISE = TRISE & ~0xFF;      // mask least 8 bits
   TRISD = 0xFE0;

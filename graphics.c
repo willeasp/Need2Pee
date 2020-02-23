@@ -68,8 +68,8 @@ void buffer2display ( void ){
 }
 
 void point2buffer (int x, int y){
-	int page;
+	/* int page;
 
 
-	displaybuffer[page][x] = displaybuffer[page][x] |  
+	displaybuffer[page][x] = displaybuffer[page][x] |   */
 }

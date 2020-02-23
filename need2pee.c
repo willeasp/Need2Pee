@@ -7,6 +7,13 @@
 #include "labresources.h"
 #include "n2p.h"
 
+#define BUTTON_4 PORTD & (1 << 7)
+#define BUTTON_3 PORTD & (1 << 6)
+#define BUTTON_2 PORTD & (1 << 5)
+#define BUTTON_1 PORTF & 2
+
+
+
 
 void main_menu ( void ){
 	//display_frame();
