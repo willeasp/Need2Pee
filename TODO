@@ -11,6 +11,8 @@
 
 - 	kolla på hur man gör random, eller ha en bestämd ordning hur hindren kommer? (geometry dash har det)
 
+-   Funktion difficulty(int); för att sätta svårighetsgrad beroende på input (0 = Easy, 1 = Hard, 2 = Extreme)
+
 I USER_ISR:
 	När timer är vald som interruptkälla / spelet är igång:	(ha en knapp också som interruptkälla 
 	-	Uppdatera all grafik										för att pausa spelet?)
