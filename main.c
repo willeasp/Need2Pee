@@ -9,6 +9,10 @@ int main(void) {
 
 	display_init();	
 	graphics_init();
+
+	timerinit();
+	buttonsinit();
+	interruptinit();
 	
 	need2pee();
 

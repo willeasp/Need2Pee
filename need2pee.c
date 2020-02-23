@@ -7,10 +7,13 @@
 #include "labresources.h"
 #include "n2p.h"
 
-int which_menu = 0;		/* Håller reda på vilken meny spelet befinner sig i */
-int menu_select = 0;			/* Håller reda på vilken rad i menyn spelet befinner sig i */
-int buttons;
-main_menu(*menu_select);
+#define BUTTON_4 PORTD & (1 << 7)
+#define BUTTON_3 PORTD & (1 << 6)
+#define BUTTON_2 PORTD & (1 << 5)
+#define BUTTON_1 PORTF & 2
+
+
+
 
 void main_menu ( int *select ){
 	//display_frame();

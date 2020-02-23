@@ -18,4 +18,7 @@ void display_string(int line, char *s);
 void display_image(int x, const uint8_t *data);
 void display_update();
 
+void timerinit (void);
+void interruptinit (void);
+
 
