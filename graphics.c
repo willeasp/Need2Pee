@@ -1,5 +1,6 @@
 #include <pic32mx.h>
 #include <stdint.h>
+#include <stdlib.h>
 #include "labresources.h"
 #include "n2p.h"
 
@@ -73,3 +74,8 @@ void point2buffer (int x, int y){
 
 	displaybuffer[page][x] = displaybuffer[page][x] |   */
 }
+
+int randnr ( int max ) {
+   return TMR2 % max;      
+}
+

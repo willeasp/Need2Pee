@@ -30,7 +30,7 @@ void timerinit (void){
   TRISE = TRISE & ~0xFF;      // mask least 8 bits
   TRISD = 0xFE0;
 
-  T2CON = 0x70;                 // set 1:64 prescale and stop timer
+  T2CON = 0x70;                 // set 1:256 prescale and stop timer
   PR2 = (80000000 / 256) / 10;  // set period
   TMR2 = 0;                     // reset timer
   IFSCLR(0) = (1 << 8);         // clear interrupt flag

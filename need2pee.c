@@ -19,7 +19,7 @@ int menu_select = 0;
 
 
 
-void main_menu ( int *select ){
+void main_menu ( void ){
 	//display_frame();
 
 	//invert_grapic(menu_select);
@@ -31,9 +31,9 @@ void main_menu ( int *select ){
 	
 	display_image(96, icon); 
 
-	BUTTON_1 {	//button_1 enter
+	/* BUTTON_1 {	//button_1 enter
 		if (which_menu & menu_select) == 0; {
-		/* start_game(); */
+		// start_game(); 
 		if (menu_select);
 		which_menu++;
 		options_menu();
@@ -59,7 +59,7 @@ void main_menu ( int *select ){
 			menu_select = 1;
 			//invert_graphic_(menu_select);
 		}
-	}
+	} */
 }	
 
 void options_menu (void) {
@@ -68,7 +68,7 @@ void options_menu (void) {
 
 	//invert_grapic(menu_select);
 
-	if (buttons & 0x00000020) {	//button_2 back
+	/* if (buttons & 0x00000020) {	//button_2 back
 		if (which_menu == 1)
 		which_menu--;
 		main_menu();
@@ -92,7 +92,7 @@ void options_menu (void) {
 			menu_select = 1;
 			//invert_graphic_(menu_select);
 		}
-	}
+	} */
 }
 
 void hello ( void ){

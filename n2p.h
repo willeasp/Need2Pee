@@ -14,6 +14,10 @@ void need2pee ( void );
 void display_frame( void );
 void graphics_init ( void );
 void buffer2display ( void );
+int randnr ( int max );
+
+// temporära funktioner som inte ska användas nödvändigtvis
+void randompageinvert ( void );
 
 /*	interrupts */
 void user_isr ( void );
