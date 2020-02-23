@@ -12,7 +12,7 @@
 #define BUTTON_2 PORTD & (1 << 5)
 #define BUTTON_1 PORTF & 2
 
-int activity = 0;
+int activity = 0;		// 0 = menu, 1 = game
 int which_menu = 0;
 int menu_select = 0;
 
