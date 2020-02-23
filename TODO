@@ -1,0 +1,22 @@
+- 	Funktioner för välja interruptkälla
+
+- 	fixa user_isr med villkor för vad som ska hända beroende på vilken interruptkälla som är vald
+	(använda booleans för vilken interruptkälla som är vald?)
+
+-	fixa point
+
+- 	när point är fixad, få punkten att röra sig över skärmen
+
+-	skapa "bilder" alltså en array av bits att likna en bil eller liknande
+
+- 	kolla på hur man gör random, eller ha en bestämd ordning hur hindren kommer? (geometry dash har det)
+
+I USER_ISR:
+	När timer är vald som interruptkälla / spelet är igång:	(ha en knapp också som interruptkälla 
+	-	Uppdatera all grafik										för att pausa spelet?)
+	-	kolla om en kollision har hänt
+
+	När knapparna är valda som interruptkälla / i menyn.
+	-	ändra pilen i menyn till det man vill välja
+	-	gå till det alternativ som är valt i menyn
+
