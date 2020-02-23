@@ -17,3 +17,6 @@ void buffer2display ( void );
 
 /*	interrupts */
 void user_isr ( void );
+extern int activity;
+extern int which_menu;
+extern int menu_select;
