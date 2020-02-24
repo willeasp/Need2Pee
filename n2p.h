@@ -12,9 +12,11 @@
 
 /*
 	Funktioner för spelet
-*/
+*/	
 void need2pee ( void );
 void start_game( void );
+void main_menu ( void );
+void options_menu ( void );
 
 
 /*
@@ -36,6 +38,5 @@ extern struct Obstacle;
 
 /*	interrupts */
 void user_isr ( void );
-extern int activity;
 extern int which_menu;
 extern int menu_select;

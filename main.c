@@ -16,8 +16,8 @@ int main(void) {
 	
 	buffer2display();
 	
-	start_game();
-	//need2pee();
+	// start_game();
+	need2pee();
 
 		
 	for(;;) ;

@@ -13,6 +13,16 @@
 
 -   Funktion difficulty(int); för att sätta svårighetsgrad beroende på input (0 = Easy, 1 = Hard, 2 = Extreme)
 
+-	menyner
+		- main
+				- Invertera 2 pages
+		- options
+			Fixa så att det går att välja alla tre alternativ.
+			-	- Invertera 1 page
+
+
+	
+
 I USER_ISR:
 	När timer är vald som interruptkälla / spelet är igång:	(ha en knapp också som interruptkälla 
 	-	Uppdatera all grafik										för att pausa spelet?)
