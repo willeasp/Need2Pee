@@ -26,7 +26,6 @@ void start_game ( void ){
 		delay(100000);
 	} */
 
-int activity = 0;
 	interruptinit();
 
 	for(;;);
