@@ -4,6 +4,8 @@
 
 char textbuffer[4][16];
 
+const uint8_t const car[];
+
 const uint8_t const font[] = {
 	0, 0, 0, 0, 0, 0, 0, 0,
 	0, 0, 0, 0, 0, 0, 0, 0,

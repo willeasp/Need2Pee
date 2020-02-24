@@ -26,12 +26,13 @@ void buttonsinit( void ){
   return;
 }
 
-void timerinit (void){   
-  TRISE = TRISE & ~0xFF;      // mask least 8 bits
-  TRISD = 0xFE0;
+int getbtns( void ){
+	return (PORTD & 0xE0) >> 4 | (PORTF & 2) >> 1;
+}
 
+void timerinit (void){   
   T2CON = 0x70;                 // set 1:256 prescale and stop timer
-  PR2 = (80000000 / 256) / 10;  // set period
+  PR2 = (80000000 / 256) / 100;  // set period
   TMR2 = 0;                     // reset timer
   IFSCLR(0) = (1 << 8);         // clear interrupt flag
   

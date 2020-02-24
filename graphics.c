@@ -7,11 +7,15 @@
 #define DISPLAY_CHANGE_TO_COMMAND_MODE (PORTFCLR = 0x10)
 #define DISPLAY_CHANGE_TO_DATA_MODE (PORTFSET = 0x10)
 
-char displaybuffer[4][128];
+uint8_t displaybuffer[4][128];
 
 uint32_t frame[128];
 
+uint32_t point[128];
+
 uint32_t zero[128];
+
+
 
 void graphics_init ( void ){
 	int i, j, shift;
@@ -40,12 +44,12 @@ void graphics_init ( void ){
 	frame[127] = ~0x0;
 }
 
-void display_frame( void ){
+void display_intarray( uint32_t a[] ){
 	int i, j, shift;
 	shift = 8;
 	for(i = 0; i<4; ++i){
 		for(j = 0; j<128; ++j){
-			displaybuffer[i][j] = displaybuffer[i][j] | ((frame[j] >> (shift * i)) & 0xFF);
+			displaybuffer[i][j] = displaybuffer[i][j] | ((a[j] >> (shift * i)) & 0xFF);
 		}
 	}
 }
@@ -69,10 +73,23 @@ void buffer2display ( void ){
 }
 
 void point2buffer (int x, int y){
-	/* int page;
-
-
-	displaybuffer[page][x] = displaybuffer[page][x] |   */
+	int page, shift;
+	x = x % 128;
+	y = y % 32;
+	shift = 7 - (y % 8);
+	if(y >= 0 & y < 8)
+		page = 3;
+	if(y >= 8 & y < 16)
+		page = 2;	
+	if(y >= 16 & y < 24)
+		page = 1;
+	if(y >= 24 & y < 32)
+		page = 0;
+	
+	/* if(displaybuffer[page][x] & (0x1 << shift))
+		displaybuffer[page][x] = displaybuffer[page][x] & ~(0x1 << shift);
+	else */
+		displaybuffer[page][x] = displaybuffer[page][x] | (0x1 << shift);
 }
 
 int randnr ( int max ) {

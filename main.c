@@ -10,11 +10,14 @@ int main(void) {
 	display_init();	
 	graphics_init();
 
-	timerinit();
 	buttonsinit();
-	interruptinit();
+	timerinit();
+
 	
-	need2pee();
+	buffer2display();
+	
+	start_game();
+	//need2pee();
 
 		
 	for(;;) ;

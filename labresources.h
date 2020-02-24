@@ -20,5 +20,6 @@ void display_update();
 
 void timerinit (void);
 void interruptinit (void);
+int getbtns( void );
 
 
