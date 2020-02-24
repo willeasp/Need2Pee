@@ -21,6 +21,16 @@ void set_difficulty(int setting);
 int get_input(void);
 
 void start_game ( void ){
+	int i;
+	DISPLAY_SET_TO_COMMAND_MODE;
+	for(i = 0; i < 2){
+		spi_send_recv(0xA7);
+		delay(100000);
+		spi_send_recv(0xA6);
+		delay(100000);
+	}
+
+
 	interruptinit();
 	activity = 1;
 
