@@ -11,8 +11,6 @@ uint8_t displaybuffer[4][128];
 
 uint32_t frame[128];
 
-uint32_t point[128];
-
 uint32_t zero[128];
 
 
@@ -62,8 +60,9 @@ void buffer2display ( void ){
 		spi_send_recv(0x22);		// set page address to write to
 		spi_send_recv(i);			// page address to be written
 		
-		spi_send_recv(0x00);		// set lower nibble column start address
-		spi_send_recv(0x00);		// set higher nibble column start address
+		spi_send_recv(0x21);		// set higher nibble column start address
+		spi_send_recv(0);
+		spi_send_recv(127);
 		
 		DISPLAY_CHANGE_TO_DATA_MODE;
 		
@@ -96,3 +95,16 @@ int randnr ( int max ) {
    return TMR2 % max;      
 }
 
+void display_car ( int page ){
+	int i;
+	for(i = 0; i<13; ++i){
+		displaybuffer[page][i] = car[i];
+	}
+}
+
+void display_obstacle ( int page, int x ){
+	int i;
+	for(i = 0; i<14; ++i){
+		displaybuffer[page][x + i] = obstacle[i];
+	}
+}
