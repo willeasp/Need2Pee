@@ -28,8 +28,6 @@ int collision_check( void ){
 
 void user_isr ( void ){
 	IFS(0) = 0;
-	if(activity){
-		update_graphic();	
-		update_movement();
-	}
+	update_graphic();	
+	update_movement();
 }

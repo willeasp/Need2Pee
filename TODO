@@ -13,12 +13,14 @@
 
 -   Funktion difficulty(int); för att sätta svårighetsgrad beroende på input (0 = Easy, 1 = Hard, 2 = Extreme)
 
--	menyn
-		- regga 1 input när knappen släpps
-		- säga "rätt sak"
-		- byta plats i meny
-			- Invertera 1 page
-			- Invertera 2 pages
+-	menyner
+		- main
+				- Invertera 2 pages
+		- options
+			Fixa så att det går att välja alla tre alternativ.
+			-	- Invertera 1 page
+
+
 	
 
 I USER_ISR:
