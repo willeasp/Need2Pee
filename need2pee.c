@@ -40,30 +40,48 @@ void main_menu (void){
 	display_image(96, icon);
 
 	
-
-	while(1){
-		select = get_input();
-		switch(select){
-			case 1:{
-				display_string(0, "Up");
+	while(1) {
+		// Back
+		if (BUTTON_1) {
+			while (BUTTON_1) {}
+			display_string(3, "back");
+			display_update();
+		}
+		// enter
+		if (BUTTON_2) {
+			while (BUTTON_2) {}
+				if (menu_select == 0) {
+				display_string(2, "Start game");
 				display_update();
-			}				
-			case 2:{
-				display_string(0, "Down");
+				}
+			else {
+				display_string(2, "Options");
 				display_update();
-			}				
-			case 3:{
-				display_string(0, "Enter");
-				display_update();
-			}				
-			case 4:{
-				display_string(0, "Back");
-				display_update();
-			}					
-			default:{
-				display_string(0, "Too many arguments");
-				display_update();
-			}				
+			}
+		}
+		// down
+		if (BUTTON_3) {
+			while (BUTTON_3) {}
+				if (menu_select){
+					menu_select = 0;
+				}
+				else {
+					menu_select = 1;
+				}
+			display_string(2, "down");
+			display_update();
+		}
+		// up
+		if (BUTTON_4) {
+			while (BUTTON_4) {}
+				if (menu_select){
+					menu_select = 0;
+				}
+				else {
+					menu_select = 1;
+				}
+			display_string(2, "up");
+			display_update();
 		}
 	}
 }
@@ -76,27 +94,27 @@ void options_menu (void) {
 	display_string(3, "Extreme");
 	display_update();
 
-while(1){
-		if(BUTTON_4){
-			display_string(0, "Up");
-			display_update();
-			while(BUTTON_4){}			
-		}		
-		if(BUTTON_3){
-			display_string(0, "Down");
-			display_update();
-			while(BUTTON_3){}			
-		}		
-		if(BUTTON_2){
-			display_string(0, "Enter");
-			display_update();
-			while(BUTTON_2){}			
-		}
-		if(BUTTON_1){
+	while (1) {
+		if (BUTTON_1) {
+			while (BUTTON_1) {}
 			display_string(0, "Back");
 			display_update();
-			main_menu();
-			while(BUTTON_1){}			
+			main_menu();			
+		}
+		if (BUTTON_2) {
+			while (BUTTON_2) {}
+			display_string(0, "Enter");
+			display_update();			
+		}			
+		if (BUTTON_3) {
+			while(BUTTON_3){}
+			display_string(0, "Down");
+			display_update();			
+		}	
+		if (BUTTON_4) {
+			while (BUTTON_4) {}
+			display_string(0, "Up");
+			display_update();	
 		}
 	}
 }
