@@ -31,6 +31,7 @@ void display_obstacle ( int page, int x );
 extern uint32_t frame[128];
 extern const uint8_t const car[13];
 extern const uint8_t const obstacle[14];
+extern struct Obstacle;
 
 
 /*	interrupts */

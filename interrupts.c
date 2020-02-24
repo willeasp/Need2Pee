@@ -3,33 +3,42 @@
 #include "labresources.h"
 #include "n2p.h"
 
-int x = 0;
-int y = 0;
 int tk1 = 0;	//timekeeper 1
-char position = 2; 
+char car_pos = 2; 
 char holding;
 char lastinput;
-int obstacle_pos = 128;
+int obstacle_init = 128;
 
-void update_movement ( void ){
-	return;
+#define bit1 car_pos & 2;	// bits in car_pos for movement logic
+#define bit0 car_pos & 1;
+
+struct Obstacle{
+	int x;	// -14 - 128
+	int y; // 0 - 3
 }
 
+
 void update_graphic( void ){
-	display_car(position);
-	display_obstacle( 1, obstacle_pos );
+	display_car(car_pos);
+	display_obstacle( randnr(4), obstacle_pos );
 	buffer2display();
+	obstacle_pos();
 		
 }
 
+void update_movement ( void ){
+	// Flyttar bilen och flyttar objekten
+	// bit 1 i car_pos
+	if((car_pos & 1)&() | ())
+}
+
+
 int collision_check( void ){
-	
+	return;
 }
 
 void user_isr ( void ){
 	IFS(0) = 0;
-	if(activity){
-		update_graphic();	
-		update_movement();
-	}
+	update_graphic();	
+	update_movement();
 }
