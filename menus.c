@@ -2,27 +2,25 @@
 #include <stdint.h>
 #include "labresources.h"
 #include "n2p.h"
-
-#define BUTTON_4 PORTD & (1 << 7)	// Up	/	Left
+                                    // I meny   /   I spel
+#define BUTTON_4 PORTD & (1 << 7)	// Up       /   Left
 #define BUTTON_3 PORTD & (1 << 6)	// Down
-#define BUTTON_2 PORTD & (1 << 5)	// Enter	/	Right
-#define BUTTON_1 PORTF & 2			// Back
+#define BUTTON_2 PORTD & (1 << 5)	// Enter    /   Right
+#define BUTTON_1 PORTF & 2			// Back       
 
-void options_menu (void);
-void set_difficulty(int setting);
-int get_input(void);
+void options_menu (void);                       /* Introducera funktioner och variabler som används i menyerna */
+void set_difficulty(int setting);               // Sätter svårighetsgrad
+int which_menu;                                 // Håller reda på vilken meny som används
+int menu_select;                                // Håller reda på vilken menyrad som är vald
 
-int which_menu = 0;
-int menu_select = 0;
+void main_menu (void){                          // Main menu
+    which_menu = 0;                             
+    menu_select = 2;                            
 
-void main_menu (void){
-
-    menu_select = 0;
-
-    display_string(0, "Highscore:");
-	display_string(1, "Last game");
-	display_string(2, "Start");
-	display_string(3, "Options");
+    display_string(0, "HIGHSCORE: xxxx");
+	display_string(1, "LAST GAME: xxxx");
+	display_string(2, "<START>");
+	display_string(3, " OPTIONS");
 	display_update();
 	
     /*
@@ -31,107 +29,109 @@ void main_menu (void){
 
 	
 	while(1) {
-		// enter
-		if (BUTTON_2) {
+		if (BUTTON_2) {                             // enter
 			while (BUTTON_2) {}
-				if (menu_select == 0) {
-				display_string(2, "Start game");
-				display_update();
-				}
-			else {
-				options_menu();
-			}
+                if (which_menu == 0) {
+				    if (menu_select == 2) {
+				        display_string(2, "START GAME");
+				        display_update();
+				    }
+			        else {
+				        options_menu();
+                    }
+			    }
 		}
-		// down
-		if (BUTTON_3) {
+		if (BUTTON_3) {                             // down
 			while (BUTTON_3) {}
-				if (menu_select){
-					menu_select = 0;
-					// invertera menu_select(0)
-				}
-				else {
-					menu_select = 1;
-					// invertera menu_select(1)
+				if (menu_select == 2){
+					menu_select = 3;
+	                display_string(2, " START");
+	                display_string(3, "<OPTIONS>");
+	                display_update();
 				}
 		}
-		// up
-		if (BUTTON_4) {
+		if (BUTTON_4) {                             // up
 			while (BUTTON_4) {}
-				if (menu_select){
-					menu_select = 0;
-					// invertera menu_select(0)
+				if (menu_select == 3){
+					menu_select = 2;
+	                display_string(2, "<START>");
+	                display_string(3, " OPTIONS");
+	                display_update();
 				}
-				else {
-					menu_select = 1;
-					// invertera menu_select(1)
-				}
+
 		}
 	}
 }
 
 void options_menu (void) {
+    which_menu = 1;
+    menu_select = 1;
 
-    menu_select = 0;
-
-	display_string(0, "Difficulty:");				
-	display_string(1, "Easy");						
-	display_string(2, "Hard");						
-	display_string(3, "Extreme");
+	display_string(0, "DIFFICULTY:");				
+	display_string(1, "<EASY>");						
+	display_string(2, " HARD");						
+	display_string(3, " EXTREME");
 	display_update();
 
 	while (1) {
 		// back
 		if (BUTTON_1) {
 			while (BUTTON_1) {}
+            which_menu = 0;
 			main_menu();
 		}
         // enter
 		if (BUTTON_2) {
 			while (BUTTON_2) {}
-            	if (menu_select == 0){
-				display_string(0, "Easy");
-                display_update();
-				}
-				if (menu_select == 1) {
-                display_string(0, "Hard");
-                display_update();
-				}
-				if (menu_select == 2) {
-				display_string(0, "Extreme");
-                display_update();
-				}			
+                    if (which_menu == 1) {
+                        if (menu_select == 1){
+                            display_string(0, "EASY");
+                            display_update();
+                        //    set_difficulty(0);
+                        }
+                    if (menu_select == 2) {
+                            display_string(0, "HARD");
+                            display_update();
+                        //    set_difficulty(1);
+                        }
+                    if (menu_select == 3) {
+                            display_string(0, "EXTREME");
+                            display_update();
+                        //    set_difficulty(2);
+                        }
+                    }
 		}			
 		// down
 		if (BUTTON_3) {
 			while (BUTTON_3) {}
-				if (menu_select == 0){
-					menu_select = 1;
-					// invertera menu_select(1)
-				}
 				if (menu_select == 1) {
-					menu_select = 2;
-					// invertera menu_select(2)
-				}
-				if (menu_select == 2) {
-					menu_select = 0;
-					// invertera menu_select(0)
-				}
-		}
+                    menu_select = 2;				
+                    display_string(1, " EASY");						
+	                display_string(2, "<HARD>");						
+	                display_update();
+                }
+                else if (menu_select == 2) {
+                    menu_select = 3;					
+                    display_string(2, " HARD");						
+                    display_string(3, "<EXTREME>");
+                    display_update();
+                }
+        } 
 		// up
 		if (BUTTON_4) {
 			while (BUTTON_4) {}
-				if (menu_select == 0) {
-					menu_select = 2;
-					// invertera menu_select(2)
-				}
-				if (menu_select == 1) {
-					menu_select = 0;
-					// invertera menu_select(0)
-				}
-				if (menu_select == 2) {
-					menu_select = 1;
-					// invertera menu_select(1)
-				}
-        }
-    }
-}
+                if (menu_select == 3) {
+                    menu_select = 2;									    
+	                display_string(2, "<HARD>");						
+	                display_string(3, " EXTREME");
+	                display_update();  
+                }
+                else if (menu_select == 2) {
+                    menu_select = 1;				
+                    display_string(1, "<EASY>");						
+	                display_string(2, " HARD");						
+	                display_update();
+                }  
+        } 
+    }  
+} 
