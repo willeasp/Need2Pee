@@ -23,6 +23,7 @@
 
 void buttonsinit( void ){
   TRISD = 0xE0;
+  TRISF = 0x2;
   return;
 }
 
@@ -32,7 +33,7 @@ int getbtns( void ){
 
 void timerinit (void){   
   T2CON = 0x70;                 // set 1:256 prescale and stop timer
-  PR2 = (80000000 / 256) / 200;  // set period
+  PR2 = (80000000 / 256) / 100;  // set period
   TMR2 = 0;                     // reset timer
   IFSCLR(0) = (1 << 8);         // clear interrupt flag
   

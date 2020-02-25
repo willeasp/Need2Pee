@@ -5,19 +5,19 @@
 
 
 int main(void) {
-	setup_chipkit();
+	setup_chipkit();	// startup setting
 
-	display_init();	
-	graphics_init();
+	display_init();		// startup routine for display
+	graphics_init();	// draws and
+	
 
 	buttonsinit();
 	timerinit();
 
+	test_game_no_interrupts();
 	
-	buffer2display();
-	
-	// start_game();
-	need2pee();
+	//start_game();
+	//need2pee();
 
 		
 	for(;;) ;

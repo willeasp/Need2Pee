@@ -12,9 +12,8 @@
 #define BUTTON_2 PORTD & (1 << 5)	// Enter	/	Right
 #define BUTTON_1 PORTF & 2			// Back
 
-void options_menu (void);
+
 void set_difficulty(int setting);
-int get_input(void);
 
 void start_game ( void ){
 /*	int i;
@@ -56,12 +55,3 @@ void set_difficulty( int setting ){
 	display_update();
 }
 
-int get_input(void){
-	int i;
-	while(1){
-		if(getbtns()){
-			i = getbtns();
-			return i;
-		}			
-	}
-}
