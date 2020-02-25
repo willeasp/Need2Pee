@@ -11,12 +11,24 @@
 #define DISPLAY_CHANGE_TO_DATA_MODE (PORTFSET = 0x10)
 
 /*
+	Globala variabler
+*/
+char lvl;
+extern int highest_score;
+extern int last_game;
+extern int game_on;
+extern int which_menu;
+extern int menu_select;
+
+/*
 	Funktioner för spelet
 */	
 void need2pee ( void );
 void start_game( void );
 void main_menu ( void );
 void options_menu ( void );
+void set_difficulty ( int setting);
+void highscore ( void );
 
 
 /*
@@ -38,5 +50,3 @@ extern struct Obstacle;
 
 /*	interrupts */
 void user_isr ( void );
-extern int which_menu;
-extern int menu_select;

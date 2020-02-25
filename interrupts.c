@@ -23,7 +23,6 @@ void update_graphic( void ){
 	display_obstacle( randnr(4), obstacle_pos );
 	buffer2display();
 	obstacle_pos();
-		
 }
 
 void update_movement ( void ){

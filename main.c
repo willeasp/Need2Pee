@@ -18,6 +18,7 @@ int main(void) {
 	
 	// start_game();
 	need2pee();
+	// highscore();
 
 		
 	for(;;) ;
