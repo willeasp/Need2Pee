@@ -11,14 +11,21 @@ uint8_t displaybuffer[4][128];
 
 uint32_t frame[128];
 
-uint32_t zero[128];
+uint32_t zero[128] = {0};
 
-
-
-void graphics_init ( void ){
+// sends intarray to displaybuffer
+void display_intarray( uint32_t a[] ){
 	int i, j, shift;
+	shift = 8;
+	for(i = 0; i<4; ++i){
+		for(j = 0; j<128; ++j){
+			displaybuffer[i][j] = displaybuffer[i][j] | ((a[j] >> (shift * i)) & 0xFF);
+		}
+	}
+}
 
-	/* blacken screen */
+void screen_clear( void ){
+	int i, j, shift;
 	shift = 8;
 	for(i = 0; i < 4; i++) {
 		DISPLAY_CHANGE_TO_COMMAND_MODE;
@@ -33,6 +40,21 @@ void graphics_init ( void ){
 		for(j = 0; j < 128; j++)
 			spi_send_recv((zero[j] >> (shift * i)) & 0xFF);
 	}
+}
+
+void buffer_clear( void ){
+	int i, j;
+	for(i = 0; i<4; ++i){
+		for(j = 0; j<128; ++j){
+			displaybuffer[i][j] = 0x0;
+		}
+	}
+}
+void graphics_init ( void ){
+	int i, j;
+
+	/* blacken screen */
+	screen_clear();
 
 	/* init frame */
 	frame[0] = ~0x0;
@@ -40,18 +62,14 @@ void graphics_init ( void ){
 		frame[i] = 0x80000001;
 	}
 	frame[127] = ~0x0;
+
+	/* Blacken displaybuffer*/
+	display_intarray(zero);
 }
 
-void display_intarray( uint32_t a[] ){
-	int i, j, shift;
-	shift = 8;
-	for(i = 0; i<4; ++i){
-		for(j = 0; j<128; ++j){
-			displaybuffer[i][j] = displaybuffer[i][j] | ((a[j] >> (shift * i)) & 0xFF);
-		}
-	}
-}
 
+
+// sends buffer to screen
 void buffer2display ( void ){
 	int i, j;
 	
@@ -61,8 +79,8 @@ void buffer2display ( void ){
 		spi_send_recv(i);			// page address to be written
 		
 		spi_send_recv(0x21);		// set higher nibble column start address
-		spi_send_recv(0);
-		spi_send_recv(127);
+		spi_send_recv(0x0);
+		spi_send_recv(0xFF);
 		
 		DISPLAY_CHANGE_TO_DATA_MODE;
 		
@@ -85,9 +103,9 @@ void point2buffer (int x, int y){
 	if(y >= 24 & y < 32)
 		page = 0;
 	
-	/* if(displaybuffer[page][x] & (0x1 << shift))
+	if(displaybuffer[page][x] & (0x1 << shift))
 		displaybuffer[page][x] = displaybuffer[page][x] & ~(0x1 << shift);
-	else */
+	else
 		displaybuffer[page][x] = displaybuffer[page][x] | (0x1 << shift);
 }
 
@@ -95,8 +113,10 @@ int randnr ( int max ) {
    return TMR2 % max;      
 }
 
+// draws car on buffer
 void display_car ( int page ){
 	int i;
+	page = page % 4;
 	for(i = 0; i<13; ++i){
 		displaybuffer[page][i] = car[i];
 	}

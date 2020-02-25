@@ -13,12 +13,9 @@
 /*
 	Globala variabler
 */
-char lvl;
 extern int highest_score;
 extern int last_game;
 extern int game_on;
-extern int which_menu;
-extern int menu_select;
 
 /*
 	Funktioner för spelet
@@ -41,12 +38,19 @@ int randnr ( int max );
 void point2buffer ( int x, int y );
 void display_car ( int page );
 void display_obstacle ( int page, int x );
+void buffer_clear( void );
+void screen_clear( void );
 
 extern uint32_t frame[128];
 extern const uint8_t const car[13];
 extern const uint8_t const obstacle[14];
-extern struct Obstacle;
+// extern struct Obstacle;
 
 
 /*	interrupts */
 void user_isr ( void );
+
+
+
+/*	testing	*/
+void test_game_no_interrupts(void);
