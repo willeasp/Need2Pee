@@ -37,7 +37,7 @@ void test_game_no_interrupts(void){
 
 		RHOLD_string[0] = RHOLD + 0x30;
 		LHOLD_string[0] = LHOLD + 0x30;
-		*BUTTON_2_string = "kuks";		//BUTTON_2 & 0x30;
+		// *BUTTON_2_string = "kuks";		//BUTTON_2 & 0x30;
 		BUTTON_4_string[0] = 0x6E + 0x31;
 
 		display_string(0, RHOLD_string);

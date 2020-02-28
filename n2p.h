@@ -15,7 +15,8 @@
 */
 extern int highest_score;
 extern int last_game;
-extern int game_on;
+extern int points;
+extern char char_points[];  // plats för char array som används för highscore och last game score.
 
 /*
 	Funktioner för spelet

@@ -14,11 +14,13 @@ int main(void) {
 	buttonsinit();
 	timerinit();
 
-	test_game_no_interrupts();
+	/* välj vilket som ska köras för test */
+
+	// test_game_no_interrupts();
 	
 	//start_game();
-	//need2pee();
-
+	need2pee();
+	//highscore();
 		
 	for(;;) ;
 	return 0;

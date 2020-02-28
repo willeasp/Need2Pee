@@ -2,12 +2,7 @@
 #include <stdint.h>
 #include "labresources.h"
 #include "n2p.h"
-                                    // I meny   /   I spel
-#define BUTTON_4 PORTD & (1 << 7)	// Up       /   Left
-#define BUTTON_3 PORTD & (1 << 6)	// Down
-#define BUTTON_2 PORTD & (1 << 5)	// Enter    /   Right
-#define BUTTON_1 PORTF & 2			// Back       
-
+                                                // I meny   /   I spel     
 void options_menu (void);                       /* Introducera funktioner och variabler som används i menyerna */
 void set_difficulty(int setting);               // Sätter svårighetsgrad
 int which_menu;                                 // Håller reda på vilken meny som används
@@ -17,8 +12,8 @@ void main_menu (void){                          // Main menu
     which_menu = 0;                             
     menu_select = 2;                            
 
-    display_string(0, "HIGHSCORE: xxxx");
-	display_string(1, "LAST GAME: xxxx");
+    display_string(0, &char_points[0]);
+	display_string(1, "l");            //
 	display_string(2, "<START>");
 	display_string(3, " OPTIONS");
 	display_update();
@@ -34,7 +29,6 @@ void main_menu (void){                          // Main menu
                 if (which_menu == 0) {
 				    if (menu_select == 2) {
                         points = 0;
-                        game_on = 1;
 				        display_string(2, "START GAME");
 				        display_update();
 				    }
