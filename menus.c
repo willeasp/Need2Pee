@@ -12,10 +12,10 @@ void main_menu (void){                          // Main menu
     which_menu = 0;                             
     menu_select = 2;                            
 
-    display_string(0, &char_points[0]);
-	display_string(1, "l");            //
-	display_string(2, "<START>");
-	display_string(3, " OPTIONS");
+    display_string(0, &char_highscore[0]);      
+	display_string(1, &char_lasttry[0]);
+	display_string(2, "     <START>");
+	display_string(3, "     OPTIONS");
 	display_update();
 	
     /*
@@ -29,7 +29,7 @@ void main_menu (void){                          // Main menu
                 if (which_menu == 0) {
 				    if (menu_select == 2) {
                         points = 0;
-				        display_string(2, "START GAME");
+				        display_string(2, "     START GAME");
 				        display_update();
 				    }
 			        else {
@@ -41,8 +41,8 @@ void main_menu (void){                          // Main menu
 			while (BUTTON_3) {}
 				if (menu_select == 2){
 					menu_select = 3;
-	                display_string(2, " START");
-	                display_string(3, "<OPTIONS>");
+	                display_string(2, "      START");
+	                display_string(3, "    <OPTIONS>");
 	                display_update();
 				}
 		}
@@ -50,8 +50,8 @@ void main_menu (void){                          // Main menu
 			while (BUTTON_4) {}
 				if (menu_select == 3){
 					menu_select = 2;
-	                display_string(2, "<START>");
-	                display_string(3, " OPTIONS");
+	                display_string(2, "     <START>");
+	                display_string(3, "     OPTIONS");
 	                display_update();
 				}
 

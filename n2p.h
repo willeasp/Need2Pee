@@ -16,7 +16,8 @@
 extern int highest_score;
 extern int last_game;
 extern int points;
-extern char char_points[];  // plats för char array som används för highscore och last game score.
+extern char char_highscore[];  // plats för char array som används för highscore och last game score.
+extern char char_lasttry[]; 
 
 /*
 	Funktioner för spelet
@@ -26,7 +27,7 @@ void start_game( void );
 void main_menu ( void );
 void options_menu ( void );
 void set_difficulty ( int setting);
-void highscore ( void );
+
 
 
 /*
