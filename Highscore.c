@@ -20,18 +20,22 @@ void lvlup (void){
 }
 */
 
+/* funktion för att göra färdigt strängarna som visar poängen i main menu */
+
 void get_highscore(int points){
-    if (points > highest_score) {
-        highest_score = points;
-        int i = 15;
-        while (points != 0){
-            char_highscore[i--] = '0' +(points%10);
-            points /=10;
-        }
-    }                   
+    int i = 15;
+    int temp;
+    temp = points;
+    while (temp != 0){
+        char_lasttry[i--] = '0' +(temp%10);
+        temp /=10;
+        }                   
     int j = 9;
-    while(j < 16) {
-        char_lasttry[j] = char_highscore[j];
-        j++;
+    if (points > highest_score) {
+        while(j < 16) {
+            highest_score = points;
+            char_highscore[j] = char_lasttry[j];
+            j++;
+        }
     }
 }
