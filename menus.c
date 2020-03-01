@@ -28,9 +28,7 @@ void main_menu (void){                          // Main menu
 			while (BUTTON_2) {}
                 if (which_menu == 0) {
 				    if (menu_select == 2) {
-                        points = 0;
-				        display_string(2, "     START GAME");
-				        display_update();
+						start_game();						
 				    }
 			        else {
 				        options_menu();
@@ -84,16 +82,23 @@ void options_menu (void){
                             display_string(0, "EASY");
                             display_update();
                             set_difficulty(0);
+							delay(10000);
+							main_menu();
                         }
                     if (menu_select == 2) {
                             display_string(0, "HARD");
                             display_update();
                             set_difficulty(1);
+							delay(10000);
+							main_menu();
+
                         }
                     if (menu_select == 3) {
                             display_string(0, "EXTREME");
                             display_update();
                             set_difficulty(2);
+							delay(10000);
+							main_menu();
                         }
                     }
 		}			

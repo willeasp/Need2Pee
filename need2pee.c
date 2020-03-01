@@ -7,20 +7,11 @@
 #include "labresources.h"
 #include "n2p.h"
 
-char difficulty = 1;
+char difficulty = 0;
 
 void set_difficulty(int setting);
 
-void start_game ( void ){
-	
-	graphics_init();
-	
-	init_objects();
 
-	init_variables();
-	
-	for(;;);
-}
 
 /*	Caller by user_isr when a crash happens */
 void crash ( void ){
@@ -28,20 +19,25 @@ void crash ( void ){
 	buffer_clear();
 	display_explosion();
 	buffer2display();
-	delay(10000000);
-	display_string(1, "    YOU DIED");
-	display_string(2, "     loser");
+	DISPLAY_SET_TO_COMMAND_MODE;
+	int i;
+	for(i = 0; i < 8; ++i){
+		spi_send_recv(0xA7);
+		delay(200000);
+		spi_send_recv(0xA6);
+		delay(200000);
+	}	
+
+	display_string(0, ">   YOU DIED   <");
+	display_string(1, ">              <");
+	display_string(2, ">     PUSH 1   <");
+	display_string(3, ">  TO CONTINUE <");
 	display_update();
 	while(1){
-		display_string(3, "Press 1 restrt");
-		display_update();
-		if(BUTTON_2){
-			display_string(0, "Start game initiated");
-			display_update();
-			delay(1000000);
-			start_game();
-		}
-			
+		if(BUTTON_1){
+			while(BUTTON_1){}
+			need2pee();
+		}			
 	}
 	
 }
@@ -49,14 +45,13 @@ void crash ( void ){
 
 /*	Function called by main	*/
 void need2pee ( void ) {
-	get_highscore(points);
+	get_highscore(objects_passed);
 	main_menu();
 	
 }
 
 
 void set_difficulty( int setting ){
-	display_string(0, "Set difficulty");
-	display_update();
+	difficulty = setting;
 }
 

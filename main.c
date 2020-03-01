@@ -12,6 +12,8 @@ int main(void) {
 	buttonsinit();
 	timerinit();
 	interruptinit();
+	
+	graphics_init();
 
 	/* välj vilket som ska köras för test */
 

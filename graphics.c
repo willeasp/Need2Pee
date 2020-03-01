@@ -9,7 +9,7 @@
 
 uint8_t displaybuffer[4][128];
 
-uint32_t frame[128];
+uint32_t road[8];
 
 uint32_t car_slide[13];
 
@@ -61,27 +61,33 @@ void buffer_clear( void ){
 	}
 }
 
+void car_slide_init ( void ){
+	int i;
+	for(i = 0; i < 13; ++i){
+		car_slide[i] = car[i];
+		car_slide[i] = car_slide[i] << 12;
+	}
+}
+
 void graphics_init ( void ){
 	int i, j;
 
 	/* blacken screen */
 	screen_clear();
 
-	/* init frame */
-	frame[0] = ~0x0;
-	for(i = 1; i<127; ++i){
-		frame[i] = 0x80000001;
+	/* init road */
+	for(i = 0; i<3; ++i){
+		road[i] = 0x81008081;
 	}
-	frame[127] = ~0x0;
+	for(i = 3; i<8; ++i){
+		road[i] = 0x80000001;
+	}
 
 	/* Blacken displaybuffer*/
 	buffer_clear();
 
 	/*	init car slide	*/
-	for(i = 0; i < 13; ++i){
-		car_slide[i] = car[i];
-		car_slide[i] = car_slide[i] << 12;
-	}
+	car_slide_init();
 }
 
 
@@ -133,8 +139,7 @@ int randnr ( int max ) {
 // draws car on buffer
 
 void display_car( void ){
-	int i, page, slide_amt;
-	slide_amt = 2;
+	int i, page;
 	/*	extreme difficulty	*/
 	// car_shift: 0 = no movement, 1 = left, 2 = right
 	if(difficulty){
@@ -182,3 +187,20 @@ void display_obstacle ( int page, int x, int ON ){
 	}	
 }
 
+char road_offset = 0;
+void display_road ( void ){
+	int i, j, loops, shift, r;
+	r = road_offset;
+	shift = 8;
+	for(i = 0; i<4; ++i){
+		for(j = 0; j<128; ++j){
+			displaybuffer[i][j] = displaybuffer[i][j] | ((road[r] >> (shift * i)) & 0xFF);
+			r += (obstacle_speed_x);
+			if(r >= 7)
+				r = 0;
+		}
+	}
+	road_offset += (obstacle_speed_x);
+	if(road_offset >= 7)
+		road_offset = 0;
+}

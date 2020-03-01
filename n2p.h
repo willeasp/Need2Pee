@@ -30,6 +30,8 @@ void init_objects( void );
 extern char difficulty;
 extern int objects_passed;
 void init_variables ( void );
+void crash ( void );
+void get_highscore(int points);
 
 
 /*
@@ -54,9 +56,11 @@ void display_obstacle ( int page, int x, int ON );
 void buffer_clear( void );
 void screen_clear( void );
 void display_explosion ( void );
+void car_slide_init ( void );
+void display_road ( void );
 
 
-extern uint32_t frame[128];
+extern uint32_t road[8];
 extern const uint8_t const car[13];
 extern const uint8_t const obstacle[13];
 extern uint32_t explosion[32];
@@ -73,7 +77,8 @@ extern char obstaclecount;		// for startup of objects
 extern char collision_true;
 extern char game_on;
 extern char car_shift;		// 0 = no movement, 1 = left, 2 = right
-extern char car_shift_position; 
+extern char car_shift_position;
+extern char slide_amt;					// slides car 
 
 
 
