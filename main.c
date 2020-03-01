@@ -8,15 +8,14 @@ int main(void) {
 	setup_chipkit();	// startup setting
 
 	display_init();		// startup routine for display
-	graphics_init();	// draws and
 	
-
 	buttonsinit();
 	timerinit();
+	interruptinit();
 
-	test_game_no_interrupts();
+	//test_game_no_interrupts();
 	
-	//start_game();
+	start_game();
 	//need2pee();
 
 		

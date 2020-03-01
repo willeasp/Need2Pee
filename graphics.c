@@ -11,15 +11,25 @@ uint8_t displaybuffer[4][128];
 
 uint32_t frame[128];
 
-uint32_t zero[128] = {0};
+uint32_t car_slide[13];
 
 // sends intarray to displaybuffer
-void display_intarray( uint32_t a[] ){
+void display_intarray( uint32_t a[] , int arr_length , char shift_x ){
 	int i, j, shift;
 	shift = 8;
 	for(i = 0; i<4; ++i){
-		for(j = 0; j<128; ++j){
-			displaybuffer[i][j] = displaybuffer[i][j] | ((a[j] >> (shift * i)) & 0xFF);
+		for(j = 0; j<arr_length; ++j){
+			displaybuffer[i][j + shift_x] = displaybuffer[i][j + shift_x] | ((a[j] >> (shift * i)) & 0xFF);
+		}
+	}
+}
+
+void display_explosion ( void ){
+	int i, j, shift;
+	shift = 8;
+	for(i = 0; i<4; ++i){
+		for(j = 0; j<32; ++j){
+			displaybuffer[i][j + 48] = displaybuffer[i][j + 48] | ((explosion[j] >> (shift * i)) & 0xFF);
 		}
 	}
 }
@@ -38,7 +48,7 @@ void screen_clear( void ){
 		DISPLAY_CHANGE_TO_DATA_MODE;
 		
 		for(j = 0; j < 128; j++)
-			spi_send_recv((zero[j] >> (shift * i)) & 0xFF);
+			spi_send_recv(0x00);
 	}
 }
 
@@ -50,6 +60,7 @@ void buffer_clear( void ){
 		}
 	}
 }
+
 void graphics_init ( void ){
 	int i, j;
 
@@ -64,7 +75,13 @@ void graphics_init ( void ){
 	frame[127] = ~0x0;
 
 	/* Blacken displaybuffer*/
-	display_intarray(zero);
+	buffer_clear();
+
+	/*	init car slide	*/
+	for(i = 0; i < 13; ++i){
+		car_slide[i] = car[i];
+		car_slide[i] = car_slide[i] << 12;
+	}
 }
 
 
@@ -110,21 +127,58 @@ void point2buffer (int x, int y){
 }
 
 int randnr ( int max ) {
-   return TMR2 % max;      
+   return TMR3 % max;      
 }
 
 // draws car on buffer
-void display_car ( int page ){
-	int i;
-	page = page % 4;
-	for(i = 0; i<13; ++i){
-		displaybuffer[page][i] = car[i];
+
+void display_car( void ){
+	int i, page, slide_amt;
+	slide_amt = 2;
+	/*	extreme difficulty	*/
+	// car_shift: 0 = no movement, 1 = left, 2 = right
+	if(difficulty){
+		// shift left
+		if(car_shift == 1){
+			for(i = 0; i < 13; ++i){
+				car_slide[i] = car_slide[i] >> slide_amt;
+			}
+		}
+		// shift right
+		if(car_shift == 2){
+			for(i = 0; i < 13; ++i){
+				car_slide[i] = car_slide[i] << slide_amt;
+			}
+		}
+		display_intarray(car_slide, 13, 5);
 	}
+	else{
+		/*	easy / hard difficulty*/
+		for(i = 0; i < 13; ++i){
+			displaybuffer[car_pos][i + 5] = car[i];
+		}
+	}
+
 }
 
-void display_obstacle ( int page, int x ){
-	int i;
-	for(i = 0; i<14; ++i){
-		displaybuffer[page][x + i] = obstacle[i];
-	}
+/*	if the car runs out of the screen, you start drawing the car
+	from obstacle[abs(x)].
+	if the car comes in at the far right, you don't draw anything if the car 
+	is outside the screen	*/
+void display_obstacle ( int page, int x, int ON ){
+	if(ON && x < 128){
+		int i;
+		if(x < 0){
+			for(i = 0; i<14 - x; ++i){
+				displaybuffer[page][i] = obstacle[i - x];
+			}
+		}
+		else{
+			for(i = 0; i<14; ++i){
+				if(!((x+i) > 127))
+					displaybuffer[page][x + i] = obstacle[i];
+			}
+		}
+	}	
 }
+

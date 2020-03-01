@@ -32,16 +32,22 @@ int getbtns( void ){
 }
 
 void timerinit (void){   
+	/*	Timer 2 for interrupts	*/
   T2CON = 0x70;                 // set 1:256 prescale and stop timer
   PR2 = (80000000 / 256) / 100;  // set period
-  TMR2 = 0;                     // reset timer
-  IFSCLR(0) = (1 << 8);         // clear interrupt flag
-  
+  TMR2 = 0;                     // reset timer  
   T2CONSET = (1 << 15);         // start timer  
+
+  /*	Timer */
+  T3CON = 0x70;                 // set 1:256 prescale and stop timer
+  PR3 = (80000000 / 256) / 123;  // set period
+  TMR3 = 0;                     // reset timer  
+  T3CONSET = (1 << 15);         // start timer 
 }
 
 // initialize interrupts
 void interruptinit (void){
+	IFSCLR(0) = (1 << 8);         // clear interrupt flag  
 	IEC(0) = (1 << 8);            // set the timer2 as interrupt source
   	IPC(2) = (7 << 2);            // set max priority setting
   	//enable_interrupt();           // enable_interrupts

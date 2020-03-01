@@ -7,39 +7,43 @@
 #include "labresources.h"
 #include "n2p.h"
 
-#define BUTTON_4 PORTD & (1 << 7)	// Up	/	Left
-#define BUTTON_3 PORTD & (1 << 6)	// Down
-#define BUTTON_2 PORTD & (1 << 5)	// Enter	/	Right
-#define BUTTON_1 PORTF & 2			// Back
-
+char difficulty = 1;
 
 void set_difficulty(int setting);
 
 void start_game ( void ){
-/*	int i;
-	DISPLAY_SET_TO_COMMAND_MODE;
-	for(i = 0; i < 2){
-		spi_send_recv(0xA7);
-		delay(100000);
-		spi_send_recv(0xA6);
-		delay(100000);
-	} */
+	
+	graphics_init();
+	
+	init_objects();
 
-	interruptinit();
-
+	init_variables();
+	
 	for(;;);
 }
 
-
-
-void hello ( void ){
-	display_string(0, "goddag");
-	display_string(1, "i stugan");
-	display_string(2, "->");
-	display_string(3, "wowza");
+/*	Caller by user_isr when a crash happens */
+void crash ( void ){
+	screen_clear();
+	buffer_clear();
+	display_explosion();
+	buffer2display();
+	delay(10000000);
+	display_string(1, "    YOU DIED");
+	display_string(2, "     loser");
 	display_update();
+	while(1){
+		display_string(3, "Press 1 restrt");
+		display_update();
+		if(BUTTON_2){
+			display_string(0, "Start game initiated");
+			display_update();
+			delay(1000000);
+			start_game();
+		}
+			
+	}
 	
-	display_image(96, icon); 
 }
 
 

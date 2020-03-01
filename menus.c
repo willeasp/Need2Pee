@@ -3,10 +3,7 @@
 #include "labresources.h"
 #include "n2p.h"
                                     // I meny   /   I spel
-#define BUTTON_4 PORTD & (1 << 7)	// Up       /   Left
-#define BUTTON_3 PORTD & (1 << 6)	// Down
-#define BUTTON_2 PORTD & (1 << 5)	// Enter    /   Right
-#define BUTTON_1 PORTF & 2			// Back       
+      
 
 void options_menu (void);                       /* Introducera funktioner och variabler som används i menyerna */
 void set_difficulty(int setting);               // Sätter svårighetsgrad
