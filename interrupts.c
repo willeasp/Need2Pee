@@ -110,23 +110,26 @@ void update_movement ( void ){
 	
 
 	// 	Obstacle movement
-	Obs_A.x -= obstacle_speed_x;
-	Obs_B.x -= obstacle_speed_x;
-	Obs_C.x -= obstacle_speed_x;
+	Obs_A.x -= obstacle_speed_x + Obs_A.speed_offset;
+	Obs_B.x -= obstacle_speed_x + Obs_B.speed_offset;
+	Obs_C.x -= obstacle_speed_x + Obs_C.speed_offset;
 
 	if(Obs_A.x < -14){
 		Obs_A.x = Obs_A.x + 300 + randnr(100);
 		Obs_A.page = randnr(4);
+		Obs_A.speed_offset = randnr(2) * (-1*(randnr(2)));
 		++objects_passed;
 	}
 	if(Obs_B.x < -17){
 		Obs_B.x = Obs_B.x + 300 + randnr(30);
 		Obs_B.page = randnr(4);
+		Obs_B.speed_offset = 0;
 		++objects_passed;
 	}
 	if(Obs_C.x < -14){
 		Obs_C.x = Obs_C.x + 300 + randnr(200);
 		Obs_C.page = randnr(4);
+		Obs_C.speed_offset = randnr(2) * (-1*(randnr(2)));
 		++objects_passed;
 	}
 

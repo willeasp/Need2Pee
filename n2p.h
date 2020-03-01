@@ -88,6 +88,7 @@ typedef struct{
 	int page;
 	int x;
 	int ON;	
+	char speed_offset;
 } Obstacle;
 
 
