@@ -49,6 +49,7 @@ void crash ( void ){
 
 /*	Function called by main	*/
 void need2pee ( void ) {
+	get_highscore(points);
 	main_menu();
 	
 }

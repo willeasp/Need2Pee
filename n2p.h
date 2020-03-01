@@ -12,6 +12,15 @@
 #define DISPLAY_SET_TO_DATA_MODE (PORTFSET = 0x10)
 
 /*
+	Globala variabler
+*/
+extern int highest_score;
+extern int last_game;
+extern int points;
+extern char char_highscore[];  // plats för char array som används för highscore och last game score.
+extern char char_lasttry[]; 
+
+/*
 	Funktioner för spelet
 */	
 void need2pee ( void );
@@ -28,6 +37,8 @@ void init_variables ( void );
 */
 void main_menu ( void );
 void options_menu ( void );
+void set_difficulty ( int setting);
+
 
 
 /*
@@ -77,8 +88,7 @@ typedef struct{
 
 /*	interrupts */
 void user_isr ( void );
-extern int which_menu;
-extern int menu_select;
+
 
 
 /*	testing	*/
