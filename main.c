@@ -15,6 +15,11 @@ int main(void) {
 	
 	graphics_init();
 
+	display_intarray(lambo, 128, 0);
+	buffer2display();
+
+	delay(100000000);
+
 	/* välj vilket som ska köras för test */
 
 	// test_game_no_interrupts();
