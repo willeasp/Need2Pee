@@ -66,6 +66,7 @@ extern const uint8_t const obstacle[13];
 extern uint32_t explosion[32];
 extern char car_shift;
 extern uint32_t car_slide[13];
+extern uint32_t lambo[128];
 
 extern int car_pos;
 extern char Rhold;		// Boolean Holding button 2
