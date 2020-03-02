@@ -7,7 +7,8 @@
 //int last_game = 0;            // Ska vara en funktion
 int highest_score = 0;        // tidigare högsta rekord
 char char_highscore[] = "HIGHSCORE:         ";
-char char_lasttry[] =   "LAST GAME:         ";
+char char_lasttry[20]; 
+char lastgame[] =   "LAST GAME:         ";
 
 
 
@@ -21,7 +22,19 @@ void lvlup (void){
 
 /* funktion för att göra färdigt strängarna som visar poängen i main menu */
 
+/*  memcpy found on github  */
+void *
+memcpy (void *dest, const void *src, int len)
+{
+  char *d = dest;
+  const char *s = src;
+  while (len--)
+    *d++ = *s++;
+  return dest;
+}
+
 void get_highscore(int points){
+    memcpy(char_lasttry, lastgame, sizeof(char_lasttry));
     int i = 15;
     int temp, score;
     score = points + (points * (difficulty+1) * 3 * obstacle_speed_x);
