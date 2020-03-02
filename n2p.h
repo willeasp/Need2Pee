@@ -1,3 +1,5 @@
+/*	File written 2020 by William Asp	*/
+
 /* 
 	Fil som gör att main.c kan hitta funktionen need2pee
 */

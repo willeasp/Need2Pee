@@ -1,4 +1,4 @@
-
+/*	Functions and defines taken from course IS1200 at KTH Kista , lab 3	*/
 
 
 /* Declare bitmap array containing font */

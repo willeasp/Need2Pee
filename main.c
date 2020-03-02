@@ -1,3 +1,5 @@
+/*	File written 2020 by William Asp	*/
+
 #include <pic32mx.h>
 #include <stdint.h>
 #include "labresources.h"
@@ -18,7 +20,7 @@ int main(void) {
 	display_intarray(lambo, 128, 0);
 	buffer2display();
 
-	delay(100000000);
+	delay(20000000);
 
 	/* välj vilket som ska köras för test */
 

@@ -1,3 +1,5 @@
+/*	File written 2020 by William Asp	*/
+
 /*
 	Spelet styrs här ifrån. När spelet startar kommer man till en meny och
 */

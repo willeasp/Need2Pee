@@ -1,3 +1,5 @@
+/*	Functions and defines taken from course IS1200 at KTH Kista , lab 3	*/
+
 #include <pic32mx.h>
 #include <stdint.h>
 #include "labresources.h"
