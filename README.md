@@ -1,5 +1,5 @@
-# Need2Pee---Car-Game
-A mini Arcade Car Game for the ChipKIT IS1200
+# Need2Pee - a Car Game
+###A mini Arcade Car Game for the ChipKIT IS1200
 
 This project was made in the course IS1200 Computer Technology.
 
